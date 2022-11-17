@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#define PHRISE "Hello my friend!"
 
 int main (void) {
     // 1. Переменные типа int, short, long, long long - целые числа
@@ -25,7 +27,7 @@ int main (void) {
     // 3. Числа с плавающей запятой: float: 6 цифр после запятой, double: 10
     float el = 2.0e20 + 1.0;
     float el1 = el - 2.0e20;
-    printf("%fб %e\n", el1, el1); // ошибка округления
+    printf("%f, %e\n", el1, el1); // ошибка округления
 
     // 4. Булевый тип
     _Bool booleanTrue = 1;
@@ -44,6 +46,31 @@ int main (void) {
     scanf("%f", &salary);
     printf("\n\t$%.2f в месяц соответствует $%.2f в год.", salary, salary * 12.0); /* табуляция */  
     printf("\rОго!\n"); /* курсор в начало строки, строка, курсор на новую строку */
+
+    char value;
+    printf("Input number: ");
+    scanf("%d", &value);
+    printf("%c\n", value);
+
+    int age;
+    printf("Input age:");
+    scanf("%d", &age);
+    printf("%e\n", age * 3.156e7);
+
+    // 6. Символьные строки
+
+    char name[40] = "0123456789"; // символьная строка - массив из 40 последовательных байтов
+    // scanf("%s", name);
+    // int size = sizeof name;
+    // printf("%s, %d, %s\n", name, size, PHRISE);
+    // strlen() - количество символов в строке, sizeof - ячеек памяти (1 ячейка - 1 байт)
+    printf("%d, %d, %d, %d\n", strlen(name), sizeof name, strlen(PHRISE), sizeof PHRISE); 
+
+
+    char*str = "0123456789";
+    // str += 5;
+    printf("str: %s, %d, %d\n", str, strlen(str), sizeof str);
+
 
     return 0;
    
