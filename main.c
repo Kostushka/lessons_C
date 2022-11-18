@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <limits.h> // целочисленные пределы
+#include <float.h> // пределы для чисел с плавающей запятой
 #define PHRISE "Hello my friend!"
+
 
 int main (void) {
     // 1. Переменные типа int, short, long, long long - целые числа
@@ -34,19 +37,20 @@ int main (void) {
     _Bool booleanFalse = 0;
 
     // sizeof - опреация, которая возвращает размер типа в байтах
-    printf("Тип int имеет размер %u байт(а,ов).\n", sizeof(int)); 
-    printf("Тип char имеет размер %u байт(а,ов).\n", sizeof(char));
-    printf("Тип long имеет размер %u байт(а,ов).\n", sizeof(long));
-    printf("Тип double имеет размер %u байт(а,ов).\n", sizeof(double));
+    printf("Type int have size %u byte.\n", sizeof(int)); 
+    printf("Type char have size %u byte.\n", sizeof(char));
+    printf("Type long have size %u byte.\n", sizeof(long));
+    printf("Type double have size %u byte.\n", sizeof(double));
 
     // 5. Управляющие последовательности
     float salary;
-    printf("\aВведите предпочитаемую вами сумму месячного жалования:");
+    printf("\aInput sum:");
     printf(" $_______\b\b\b\b\b\b\b"); /* курсор перемещается влево */
     scanf("%f", &salary);
-    printf("\n\t$%.2f в месяц соответствует $%.2f в год.", salary, salary * 12.0); /* табуляция */  
-    printf("\rОго!\n"); /* курсор в начало строки, строка, курсор на новую строку */
+    printf("\n\t$%.2f in mounth = $%.2f in year.", salary, salary * 12.0); /* табуляция */  
+    printf("\rWow!\n"); /* курсор в начало строки, строка, курсор на новую строку */
 
+    // дз
     char value;
     printf("Input number: ");
     scanf("%d", &value);
@@ -69,8 +73,17 @@ int main (void) {
 
     char*str = "0123456789";
     // str += 5;
-    printf("str: %s, %d, %d\n", str, strlen(str), sizeof str);
+    printf("str: %s, %d, %d\n", str, strlen(str), sizeof str); // ???
 
+    // 7. Символьные константы
+
+    const float PI = 3.1415926; // вместо define
+    // INT_MAX - max int в системе из limits.h, 
+    // FLT_MANT_DIG - число разрядов в мантиссе из float.h
+    // CHAR_BIT - число разрядов байта в системе
+    // FLT_MIN - min float
+    // FLT_DIG - точность значений типа float (кол-во знаков)
+    printf("%1.2f, %d, %d, %d, %e, %d", PI, INT_MAX, FLT_MANT_DIG, CHAR_BIT, FLT_MIN, FLT_DIG); 
 
     return 0;
    
