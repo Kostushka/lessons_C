@@ -13,11 +13,18 @@ int main (void) {
     // если тип long > int, использоват тип int
     // если тип long == int, использовать тип !long для 32-разрядных чисел!, чтобы перенести на 16-разрядную машину 
     // тип !short в целях экономии памяти, когда нужна 16-разрядная величина!, а int - 32-разрядный тип данных
-    int number = 2147483647; // 32-разрядное слово
+    int number = 2147483647; // 32-разрядное слово / max: 2^31 (один бит под знак)
     short shortnum = 32767; // 16-разрядное слово
     long longnum = 2147483647; // 32-разрядное слово
     long long longlongnum = 9223372036854775807; // 64-разрядное слово
     printf("%d, %hd, %ld, %lld\n", number, shortnum, longnum, longlongnum);
+
+    unsigned int t = 4294967295; // max: 2^32
+    printf("t: %u\n", t);
+    unsigned int i;
+    i = 0;
+    i--;
+    printf("i: %u\n", i);
 
     // 2. Константы типа char для символов
     char grade = 'A';
@@ -28,7 +35,9 @@ int main (void) {
     printf("%c, %c, %c, %c\n", grade, gradeNumber, quotes, beep);
 
     // 3. Числа с плавающей запятой: float: 6 цифр после запятой, double: 10
-    float el = 2.0e20 + 1.0;
+    float a; //10^38 знаков после запятой
+    double b; //10^308 знаков после запятой
+    float el = 2.0e20 + 1.0; 
     float el1 = el - 2.0e20;
     printf("%f, %e\n", el1, el1); // ошибка округления
 
@@ -99,6 +108,50 @@ int main (void) {
     printf("\nEnter width:");
     scanf("%d", &width);
     printf("\nWidth with number: %*d\n", width, q);
+
+    // 9. while
+    const float ASJUST = 7.64;
+    const float SCALE = 0.325;
+    float shoe, foot;
+    shoe = 3.0;
+    while (shoe < 18.5) {
+        printf("shoe          foot\n");
+        foot = SCALE * shoe + ASJUST;
+        printf("%.2f %12.2f\n", shoe, foot);
+        shoe += 1.0;
+    }
+
+    // 10. exponential growth
+    // variables declaration 
+    int count;
+    float current, total;
+    // initialising variables
+    count = current = total = 1;
+    while (count < 150) {
+        count = count + 1; 
+        // exponential growth
+        current = current * 2; // 1 => 2 => 4 => 8 => 16 => ...
+        total = total + current;
+        printf("Ex growth\n count: %d,\n current: %e,\n total: %e\n", count, current, total);
+    }
+
+    // 11. sizeof size_t
+    int n = 0;
+    size_t intsize = sizeof (int);
+    printf("sizeof n: %u,\nsizeof(n): %u \n", sizeof n, intsize);
+   
+    // 12. convert seconds into minutes
+    int sec, min, left;
+    printf("Input seconds > 0, please\n");
+    scanf("%d", &sec);
+    while (sec > 10) {
+        min = sec / 60; // усечение
+        left = sec % 60;
+        printf("%d sec = %d min %d sec\n", sec, min, left);
+        printf("Input seconds > 0, please\n");
+        scanf("%d", &sec);
+    }
+
 
 
     // небольшой ликбез
